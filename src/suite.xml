@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Suite1" verbose="1" >
+    <parameter name="browserC" value="chrome"/>
+    <parameter name="browserF" value="firefox"/>
+    <parameter name="browserE" value="edge"/>
+    <parameter name="username" value="hkoeixgacrkdsnufmq@bvhrk.com"/>
+    <parameter name="password" value="dYk.4%B-PCPz9D$"/>
+    <test name="Log in" >
+        <classes>
+            <class name="tests.LogInTest" />
+        </classes>
+    </test>
+
+    <test name="Log out">
+        <classes>
+            <class name="tests.LogOutTest"/>
+        </classes>
+    </test>
+
+    <test name="Cancel account">
+        <classes>
+            <class name="tests.CancelAccountTest"/>
+        </classes>
+    </test>
+</suite>

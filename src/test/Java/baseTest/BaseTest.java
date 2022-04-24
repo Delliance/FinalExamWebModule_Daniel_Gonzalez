@@ -6,14 +6,15 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
-import pages.homePageStart;
+import pages.HomePageStart;
 import static org.testng.Assert.*;
 
 public class BaseTest {
 
     private WebDriver driver;
-    protected homePageStart homePageStart;
+    protected HomePageStart homePageStart;
 
     @BeforeClass
     @Parameters({"browserC"}) //browserC = chrome, browserF = firefox, browserE = edge
@@ -38,12 +39,17 @@ public class BaseTest {
                 throw new IllegalStateException("That driver does not exist, check if it it was written correctly or install it");
         }
 
-        driver.get("https://www.espnqa.com/?src=com&_adblock=true&espn=cloud");
+        goHome();
         System.out.println(driver.getTitle());
-        homePageStart = new homePageStart(driver);
+        homePageStart = new HomePageStart(driver);
         driver.manage().window().maximize();
         assertEquals(homePageStart.getPageTitle(), "ESPN", "Web page Title does not match");
         assertTrue(homePageStart.isLeftLoginMenuVisible(), "Left login menu is not visible, check you're logged out");
+    }
+
+    @BeforeMethod
+    public void goHome() {
+        driver.get("https://www.espnqa.com/?src=com&_adblock=true&espn=cloud");
     }
 
     @AfterClass

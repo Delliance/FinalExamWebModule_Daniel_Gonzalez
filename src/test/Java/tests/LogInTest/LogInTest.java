@@ -3,6 +3,7 @@ package tests.LogInTest;
 import baseTest.BaseTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pages.HomePageLoggedIn;
 import pages.hovers.UserMenuHover;
 import pages.iframes.LoginSingUpIFrame;
 import static org.testng.Assert.*;
@@ -18,9 +19,9 @@ public class LogInTest extends BaseTest {
         assertEquals(menuHover.getHeader(), "Welcome!", "Menu Header Incorrect");
         LoginSingUpIFrame singUpIFrame = menuHover.clickLoginLink();
         //TODO: assert to confirm that the iframe was opened, two methods for this too
-//        singUpIFrame.setUsername(username);
-//        singUpIFrame.setPassword(password);
-//        ESPNHomePageLoggedIn homePageLoggedIn = singUpIFrame.clickLogin();
+        singUpIFrame.setUsername(username);
+        singUpIFrame.setPassword(password);
+        HomePageLoggedIn homePageLoggedIn = singUpIFrame.clickLogin();
 //        TODO: after the previous method work for the Iframe, assert to confirm that you're back to the main page but not the starting one
     }
 }

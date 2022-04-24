@@ -6,7 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class homePageLoggedIn {
+public class HomePageLoggedIn {
 
     private WebDriver driver;
 
@@ -20,7 +20,7 @@ public class homePageLoggedIn {
 
     private By myProfileLink = By.cssSelector("#header-wrapper .account-management li:nth-child(5) a");
 
-    public homePageLoggedIn(WebDriver driver) {
+    public HomePageLoggedIn(WebDriver driver) {
         this.driver =  driver;
         actions = new Actions(driver);
         wait = new WebDriverWait(driver, 5);

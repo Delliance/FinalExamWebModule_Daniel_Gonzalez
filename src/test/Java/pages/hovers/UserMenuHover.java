@@ -18,6 +18,8 @@ public class UserMenuHover {
 
     private By loginLink = By.cssSelector("li:nth-child(7) a");
 
+    private String loginIFrameId = "disneyid-iframe";
+
     public UserMenuHover(WebElement menu, WebDriver driver) {
         this.menu = menu;
         this.driver = driver;
@@ -35,6 +37,11 @@ public class UserMenuHover {
     public LoginSingUpIFrame clickLoginLink() {
         wait.until(ExpectedConditions.visibilityOf(menu));
         menu.findElement(loginLink).click();
+        switchToIFrame();
         return new LoginSingUpIFrame(driver);
+    }
+
+    private void switchToIFrame() {
+        driver.switchTo().frame(loginIFrameId);
     }
 }

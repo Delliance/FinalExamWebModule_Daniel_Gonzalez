@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.iframes.LoginSingUpIFrame;
 
-public class ESPNHomePageNewUser {
+public class ESPNHomePageStart {
 
     private WebDriver driver;
 
@@ -19,17 +19,14 @@ public class ESPNHomePageNewUser {
 
     private By userMenuHover = By.id("global-user-trigger");
 
-    private By logoutLink = By.cssSelector("#header-wrapper .account-management .small");
-
-    private By myProfileLink = By.cssSelector("#header-wrapper .account-management li:nth-child(5) a");
-
-    public ESPNHomePageNewUser(WebDriver driver) {
+    public ESPNHomePageStart(WebDriver driver) {
         this.driver =  driver;
         actions = new Actions(driver);
         wait = new WebDriverWait(driver, 5);
     }
 
     public void hoverUserMenu() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(userMenuHover));
         actions.moveToElement(driver.findElement(userMenuHover)).build().perform();
     }
 

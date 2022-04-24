@@ -7,12 +7,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
-import pages.ESPNHomePageNewUser;
+import pages.ESPNHomePageStart;
 
 public class BaseTest {
 
     private WebDriver driver;
-    protected ESPNHomePageNewUser espnHomePageNewUser;
+    protected ESPNHomePageStart espnHomePageStart;
 
     @BeforeClass
     @Parameters({"browserC"}) //browserC = chrome, browserF = firefox, browserE = edge
@@ -39,7 +39,7 @@ public class BaseTest {
 
         driver.get("https://www.espnqa.com/?src=com&_adblock=true&espn=cloud");
         System.out.println(driver.getTitle());
-        espnHomePageNewUser = new ESPNHomePageNewUser(driver);
+        espnHomePageStart = new ESPNHomePageStart(driver);
         driver.manage().window().maximize();
     }
 

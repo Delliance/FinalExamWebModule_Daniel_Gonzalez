@@ -2,8 +2,7 @@ package pages.iframes;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.Parameters;
-import pages.ESPNHomePageLoggedIn;
+import pages.homePageLoggedIn;
 
 public class LoginSingUpIFrame {
 
@@ -28,8 +27,8 @@ public class LoginSingUpIFrame {
         driver.findElement(passwordInput).sendKeys(password);
     }
 
-    public ESPNHomePageLoggedIn clickLogin() {
+    public homePageLoggedIn clickLogin() {
         driver.findElement(loginButton);
-        return new ESPNHomePageLoggedIn(driver);
+        return new homePageLoggedIn(driver);
     }
 }

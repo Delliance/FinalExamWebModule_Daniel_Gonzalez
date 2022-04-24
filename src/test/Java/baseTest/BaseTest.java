@@ -7,12 +7,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
-import pages.ESPNHomePageStart;
+import pages.homePageStart;
+import static org.testng.Assert.*;
 
 public class BaseTest {
 
     private WebDriver driver;
-    protected ESPNHomePageStart espnHomePageStart;
+    protected homePageStart homePageStart;
 
     @BeforeClass
     @Parameters({"browserC"}) //browserC = chrome, browserF = firefox, browserE = edge
@@ -39,8 +40,10 @@ public class BaseTest {
 
         driver.get("https://www.espnqa.com/?src=com&_adblock=true&espn=cloud");
         System.out.println(driver.getTitle());
-        espnHomePageStart = new ESPNHomePageStart(driver);
+        homePageStart = new homePageStart(driver);
         driver.manage().window().maximize();
+        assertEquals(homePageStart.getPageTitle(), "ESPN", "Web page Title does not match");
+        assertTrue(homePageStart.isLeftLoginMenuVisible(), "Left login menu is not visible, check you're logged out");
     }
 
     @AfterClass

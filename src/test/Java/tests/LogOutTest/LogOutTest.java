@@ -1,4 +1,4 @@
-package tests;
+package tests.LogOutTest;
 
 import baseTest.BaseTest;
 

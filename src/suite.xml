@@ -7,19 +7,19 @@
     <parameter name="password" value="dYk.4%B-PCPz9D$"/>
     <test name="Log in" >
         <classes>
-            <class name="tests.LogInTest" />
+            <class name="tests.LogInTest.LogInTest" />
         </classes>
     </test>
 
     <test name="Log out">
         <classes>
-            <class name="tests.LogOutTest"/>
+            <class name="tests.LogOutTest.LogOutTest"/>
         </classes>
     </test>
 
     <test name="Cancel account">
         <classes>
-            <class name="tests.CancelAccountTest"/>
+            <class name="tests.CancelAccountTest.CancelAccountTest"/>
         </classes>
     </test>
 </suite>

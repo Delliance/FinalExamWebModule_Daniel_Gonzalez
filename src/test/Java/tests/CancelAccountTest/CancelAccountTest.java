@@ -1,4 +1,4 @@
-package tests;
+package tests.CancelAccountTest;
 
 import baseTest.BaseTest;
 

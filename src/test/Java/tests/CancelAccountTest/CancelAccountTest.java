@@ -5,7 +5,7 @@ import tests.baseTest.BaseTest;
 
 public class CancelAccountTest extends BaseTest {
 
-    @Test
+    @Test(groups = {"cancelAccount"})
     public void cancelAccountTest() {
 
     }

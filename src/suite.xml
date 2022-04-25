@@ -1,15 +1,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Suite1" verbose="1" >
+    <parameter name="webPage" value="https://www.espnqa.com/?src=com&amp;_adblock=true&amp;espn=cloud"/>
     <parameter name="browserC" value="chrome"/>
     <parameter name="browserF" value="firefox"/>
     <parameter name="browserE" value="edge"/>
-    <parameter name="username" value="hkoeixgacrkdsnufmq@bvhrk.com"/>
-    <parameter name="password" value="dYk.4%B-PCPz9D$"/>
     <parameter name="singUpFirstName" value="randomName"/>
     <parameter name="singUpLastName" value="randomLastName"/>
 <!--    Be sure to change the email each time you're going to run this test, since it doesn't allow to use the same email for 14 days, change the V# with other number in sequence-->
-    <parameter name="singUpEmail" value="thisisarandomemail12345V3@randomemail.com"/>
-    <parameter name="singUpPassword" value="dYk.4%B-PCPz9D$"/>
+    <parameter name="singUpEmail" value="thisisarandomemail12345V43@randomemail.com"/>
+    <parameter name="singUpPassword" value="ThisIsMyDifficultPassword12345!"/>
     <test name="Log in" >
         <classes>
             <class name="tests.LogInTest.LogInTest" />

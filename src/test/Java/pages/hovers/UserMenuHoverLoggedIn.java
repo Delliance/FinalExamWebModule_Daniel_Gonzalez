@@ -19,6 +19,8 @@ public class UserMenuHoverLoggedIn {
 
     private By logOutLink = By.cssSelector(".global-user-container li:nth-child(9) a");
 
+    private By myProfileLink = By.cssSelector(".global-user-container li:nth-child(5) a");
+
     private String myProfileIFrameId = "disneyid-iframe";
 
     public UserMenuHoverLoggedIn(WebElement menu, WebDriver driver) {

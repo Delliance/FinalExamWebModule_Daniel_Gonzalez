@@ -35,6 +35,8 @@ public class LoginSingUpIFrame {
 
     private By activatedIFrame = By.cssSelector("body[class=\"recaptcha-activated\"]");
 
+    private By passwordHiddenMessage = By.cssSelector("[class=\"password-rules message\"]");
+
 
     public LoginSingUpIFrame(WebDriver driver) {
         this.driver = driver;
@@ -54,6 +56,7 @@ public class LoginSingUpIFrame {
     public HomePageLoggedIn clickLogin() {
         wait.until(ExpectedConditions.presenceOfElementLocated(loginButton));
         driver.findElement(loginButton).click();
+        switchToMainArea();
         return new HomePageLoggedIn(driver);
     }
 
@@ -82,9 +85,12 @@ public class LoginSingUpIFrame {
         driver.findElement(singUpPasswordInput).sendKeys(password);
     }
 
-    public void clickConfirmSingUpButton() {
+    public HomePageLoggedIn clickConfirmSingUpButton() {
+//        NOTE: for some reason this method sometimes work and other times not, I don't know the reason
         wait.until(ExpectedConditions.presenceOfElementLocated(confirmSingUpButton));
         driver.findElement(confirmSingUpButton).click();
+        switchToMainArea();
+        return new HomePageLoggedIn(driver);
     }
 
     public boolean isTheIFrameActive() {
@@ -100,6 +106,10 @@ public class LoginSingUpIFrame {
     public boolean isIFrameLogoVisible() {
         wait.until(ExpectedConditions.presenceOfElementLocated(logo));
         return driver.findElement(logo).isDisplayed();
+    }
+
+    private void switchToMainArea() {
+        driver.switchTo().parentFrame();
     }
 
 }

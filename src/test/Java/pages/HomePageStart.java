@@ -21,7 +21,7 @@ public class HomePageStart {
 
     private By hoverMenu = By.cssSelector(".user .global-user");
 
-    private By title = By.cssSelector(".container h1 a"); //check if it is ESPN
+    private By header = By.cssSelector(".container h1 a"); //check if it is ESPN
 
     private By loginMenuHeader = By.id("sideLogin-left-rail"); //check if it is visible
 
@@ -31,13 +31,13 @@ public class HomePageStart {
         wait = new WebDriverWait(driver, 5);
     }
 
-    public String getPageTitle() {
+    public String getPageHeader() {
         wait.until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
-                return  d.findElement(title).getText().length() != 0; //if it takes too long to charge the page, this text does not load, so I use this condition
+                return  d.findElement(header).getText().length() != 0; //if it takes too long to charge the page, this text does not load, so I use this condition
             }
         });
-        return driver.findElement(title).getText();
+        return driver.findElement(header).getText();
     }
 
     public boolean isLeftLoginMenuVisible() {

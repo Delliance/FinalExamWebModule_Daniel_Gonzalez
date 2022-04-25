@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.iframes.LoginSingUpIFrame;
 
-public class UserMenuHover {
+public class UserMenuHoverStart {
     private WebElement menu;
 
     private WebDriver driver;
@@ -16,11 +16,11 @@ public class UserMenuHover {
 
     private By header = By.cssSelector(".display-user");
 
-    private By loginLink = By.cssSelector("li:nth-child(7) a");
+    private By loginLink = By.cssSelector(".global-user-container li:nth-child(7) a");
 
     private String loginIFrameId = "disneyid-iframe";
 
-    public UserMenuHover(WebElement menu, WebDriver driver) {
+    public UserMenuHoverStart(WebElement menu, WebDriver driver) {
         this.menu = menu;
         this.driver = driver;
         wait = new WebDriverWait(driver, 5);
@@ -37,11 +37,11 @@ public class UserMenuHover {
     public LoginSingUpIFrame clickLoginLink() {
         wait.until(ExpectedConditions.visibilityOf(menu));
         menu.findElement(loginLink).click();
-        switchToIFrame();
+        switchToLoginIFrame();
         return new LoginSingUpIFrame(driver);
     }
 
-    private void switchToIFrame() {
+    private void switchToLoginIFrame() {
         driver.switchTo().frame(loginIFrameId);
     }
 }

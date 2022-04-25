@@ -7,7 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.hovers.UserMenuHover;
+import pages.hovers.UserMenuHoverStart;
 
 public class HomePageStart {
 
@@ -45,11 +45,11 @@ public class HomePageStart {
         return driver.findElement(loginMenuHeader).isDisplayed();
     }
 
-    public UserMenuHover hoverUserMenu() {
+    public UserMenuHoverStart hoverUserMenu() {
         wait.until(ExpectedConditions.presenceOfElementLocated(hoverTrigger));
         WebElement trigger = driver.findElement(hoverTrigger);
         actions.moveToElement(trigger).build().perform();
-        return new UserMenuHover(driver.findElement(hoverMenu), driver);
+        return new UserMenuHoverStart(driver.findElement(hoverMenu), driver);
     }
 
 }

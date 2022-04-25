@@ -6,6 +6,6 @@ import org.openqa.selenium.support.FindBy;
 public class MyAccountIFrame {
 
     @FindBy(id = "cancel-account")
-    WebElement cancelAccountLink;
+    private WebElement cancelAccountLink;
 
 }

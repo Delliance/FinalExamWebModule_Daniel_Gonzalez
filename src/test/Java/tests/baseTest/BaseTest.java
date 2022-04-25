@@ -1,14 +1,15 @@
-package baseTest;
+package tests.baseTest;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
+import pages.HomePageLoggedIn;
 import pages.HomePageStart;
+import pages.hovers.UserMenuHoverStart;
+import pages.iframes.LoginSingUpIFrame;
+
 import static org.testng.Assert.*;
 
 public class BaseTest {
@@ -16,8 +17,31 @@ public class BaseTest {
     private WebDriver driver;
     protected HomePageStart homePageStart;
 
+    protected HomePageLoggedIn homePageLoggedIn;
+
+    @BeforeSuite
+    @Parameters({"singUpFirstName", "singUpLastName", "singUpEmail", "singUpPassword"})
+    public void createAccount(String firstName, String lastName, String email, String password){
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        driver = new ChromeDriver();
+        goHome();
+        homePageStart = new HomePageStart(driver);
+        driver.manage().window().maximize();
+        // creating a new account for the whole suite
+        UserMenuHoverStart hoverStart = homePageStart.hoverUserMenu();
+        LoginSingUpIFrame singUpIFrame = hoverStart.clickLoginLink();
+        singUpIFrame.clickSingUp();
+        singUpIFrame.setSingUpFirstName(firstName);
+        singUpIFrame.setSingUpLastName(lastName);
+        singUpIFrame.setSingUpEmail(email);
+        singUpIFrame.setSingUpPassword(password);
+        singUpIFrame.clickConfirmSingUpButton();
+        driver.quit();
+
+    }
+
     @BeforeClass
-    @Parameters({"browserC"}) //browserC = chrome, browserF = firefox, browserE = edge
+    @Parameters({"browserF"}) //browserC = chrome, browserF = firefox, browserE = edge
     public void setUp(String browser) {
         switch (browser){
             case "chrome":
@@ -42,9 +66,8 @@ public class BaseTest {
         goHome();
         System.out.println(driver.getTitle());
         homePageStart = new HomePageStart(driver);
+//        homePageLoggedIn = new HomePageLoggedIn(driver);
         driver.manage().window().maximize();
-        assertEquals(homePageStart.getPageTitle(), "ESPN", "Web page Title does not match");
-        assertTrue(homePageStart.isLeftLoginMenuVisible(), "Left login menu is not visible, check you're logged out");
     }
 
     @BeforeMethod

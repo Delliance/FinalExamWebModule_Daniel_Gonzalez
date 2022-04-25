@@ -1,24 +1,27 @@
 package tests.LogInTest;
 
-import baseTest.BaseTest;
+import org.testng.annotations.BeforeGroups;
+import tests.baseTest.BaseTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.HomePageLoggedIn;
-import pages.hovers.UserMenuHover;
+import pages.hovers.UserMenuHoverStart;
 import pages.iframes.LoginSingUpIFrame;
 import static org.testng.Assert.*;
 
 public class LogInTest extends BaseTest {
 
     @Test
-    @Parameters({"username", "password"})
+    @Parameters({"singUpEmail", "singUpPassword"})
     public void testLogin(String username, String password) {
-        //TODO: assert to confirm that you are in the home page, two methods for this
-        UserMenuHover menuHover = homePageStart.hoverUserMenu();
+        assertEquals(homePageStart.getPageTitle(), "ESPN", "Web page Title does not match");
+        assertTrue(homePageStart.isLeftLoginMenuVisible(), "Left login menu is not visible, check you're logged out");
+        UserMenuHoverStart menuHover = homePageStart.hoverUserMenu();
         assertTrue(menuHover.isMenuDisplayed(), "Menu is not displayed");
         assertEquals(menuHover.getHeader(), "Welcome!", "Menu Header Incorrect");
         LoginSingUpIFrame singUpIFrame = menuHover.clickLoginLink();
-        //TODO: assert to confirm that the iframe was opened, two methods for this too
+        assertTrue(singUpIFrame.isTheIFrameActive(), "The IFrame is not active");
+        assertTrue(singUpIFrame.isIFrameLogoVisible(), "IFrame is not visible");
         singUpIFrame.setUsername(username);
         singUpIFrame.setPassword(password);
         HomePageLoggedIn homePageLoggedIn = singUpIFrame.clickLogin();

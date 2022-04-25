@@ -1,6 +1,7 @@
 package pages.iframes;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,11 +13,27 @@ public class LoginSingUpIFrame {
 
     private WebDriverWait wait;
 
-    By usernameInput = By.cssSelector(".ng-pristine[type=\"email\"]");
+    private By LoginUsernameInput = By.cssSelector(".ng-pristine[type=\"email\"]");
 
-    By passwordInput = By.cssSelector(".ng-pristine[type=\"password\"]");
+    private By LoginPasswordInput = By.cssSelector(".ng-pristine[type=\"password\"]");
 
-    By loginButton = By.cssSelector("button[type=\"submit\"]");
+    private By loginButton = By.cssSelector("button[type=\"submit\"]");
+
+    private By singUpButton = By.cssSelector("a.btn");
+
+    private By singUpFirstNameInput = By.name("firstName");
+
+    private By singUpLastNameInput = By.name("lastName");
+
+    private By singUpEmailInput = By.name("email");
+
+    private By singUpPasswordInput = By.name("newPassword");
+
+    private By confirmSingUpButton = By.cssSelector("button[type=\"submit\"]"); //yes it is the exact same as the login button
+
+    private By logo = By.cssSelector("h1.logo");
+
+    private By activatedIFrame = By.cssSelector("body[class=\"recaptcha-activated\"]");
 
 
     public LoginSingUpIFrame(WebDriver driver) {
@@ -25,13 +42,13 @@ public class LoginSingUpIFrame {
     }
 
     public void setUsername (String username) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(usernameInput));
-        driver.findElement(usernameInput).sendKeys(username);
+        wait.until(ExpectedConditions.presenceOfElementLocated(LoginUsernameInput));
+        driver.findElement(LoginUsernameInput).sendKeys(username);
     }
 
     public void setPassword (String password) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(passwordInput));
-        driver.findElement(passwordInput).sendKeys(password);
+        wait.until(ExpectedConditions.presenceOfElementLocated(LoginPasswordInput));
+        driver.findElement(LoginPasswordInput).sendKeys(password);
     }
 
     public HomePageLoggedIn clickLogin() {
@@ -39,4 +56,50 @@ public class LoginSingUpIFrame {
         driver.findElement(loginButton).click();
         return new HomePageLoggedIn(driver);
     }
+
+    public void clickSingUp() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(singUpButton));
+        driver.findElement(singUpButton).click();
+    }
+
+    public void setSingUpFirstName(String firstName) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(singUpFirstNameInput));
+        driver.findElement(singUpFirstNameInput).sendKeys(firstName);
+    }
+
+    public void setSingUpLastName(String lastName) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(singUpLastNameInput));
+        driver.findElement(singUpLastNameInput).sendKeys(lastName);
+    }
+
+    public void setSingUpEmail(String email) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(singUpEmailInput));
+        driver.findElement(singUpEmailInput).sendKeys(email);
+    }
+
+    public void setSingUpPassword(String password) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(singUpPasswordInput));
+        driver.findElement(singUpPasswordInput).sendKeys(password);
+    }
+
+    public void clickConfirmSingUpButton() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(confirmSingUpButton));
+        driver.findElement(confirmSingUpButton).click();
+    }
+
+    public boolean isTheIFrameActive() {
+        try {
+            driver.findElement(activatedIFrame);
+            return true;
+        }
+        catch (NoSuchElementException e){
+            return false;
+        }
+    }
+
+    public boolean isIFrameLogoVisible() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(logo));
+        return driver.findElement(logo).isDisplayed();
+    }
+
 }

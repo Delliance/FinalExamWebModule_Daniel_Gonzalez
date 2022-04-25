@@ -5,6 +5,11 @@
     <parameter name="browserE" value="edge"/>
     <parameter name="username" value="hkoeixgacrkdsnufmq@bvhrk.com"/>
     <parameter name="password" value="dYk.4%B-PCPz9D$"/>
+    <parameter name="singUpFirstName" value="randomName"/>
+    <parameter name="singUpLastName" value="randomLastName"/>
+<!--    Be sure to change the email each time you're going to run this test, since it doesn't allow to use the same email for 14 days, change the V# with other number in sequence-->
+    <parameter name="singUpEmail" value="thisisarandomemail12345V3@randomemail.com"/>
+    <parameter name="singUpPassword" value="dYk.4%B-PCPz9D$"/>
     <test name="Log in" >
         <classes>
             <class name="tests.LogInTest.LogInTest" />

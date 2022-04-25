@@ -20,12 +20,12 @@ public class BaseTest {
 
     protected HomePageLoggedIn homePageLoggedIn;
 
-    @BeforeSuite
-    @Parameters({"webPage" ,"singUpFirstName", "singUpLastName", "singUpEmail", "singUpPassword"})
-    public void createAccount(String webPage, String firstName, String lastName, String email, String password){
+//    @BeforeSuite(groups = {"logIn", "logOut", "cancelAccount"})
+    @Parameters({"singUpFirstName", "singUpLastName", "singUpEmail", "singUpPassword"})
+    public void createAccount(String firstName, String lastName, String email, String password){
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
         driver = new FirefoxDriver();
-        goHome(webPage);
+        goHome();
         homePageStart = new HomePageStart(driver);
         driver.manage().window().maximize();
         // creating a new account for the whole suite
@@ -42,9 +42,9 @@ public class BaseTest {
 
     }
 
-    @BeforeTest
-    @Parameters({"webPage" ,"browserF"}) //browserC = chrome, browserF = firefox, browserE = edge
-    public void setUp(String webPage, String browser) {
+    @BeforeTest(groups = {"logIn", "logOut", "cancelAccount"})
+    @Parameters({"browserF"}) //browserC = chrome, browserF = firefox, browserE = edge
+    public void setUp(String browser) {
         switch (browser){
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
@@ -65,20 +65,20 @@ public class BaseTest {
                 throw new IllegalStateException("That driver does not exist, check if it it was written correctly or install it");
         }
 
-        goHome(webPage);
+        goHome();
         System.out.println(driver.getTitle());
         homePageStart = new HomePageStart(driver);
         homePageLoggedIn = new HomePageLoggedIn(driver);
         driver.manage().window().maximize();
     }
 
-    @BeforeMethod
-    @Parameters({"webPage"})
-    public void goHome(String webPage) {
-        driver.get(webPage);
+    @BeforeMethod(groups = {"logIn", "logOut", "cancelAccount"})
+//    @Parameters({"webPage"})
+    public void goHome() {
+        driver.get("https://www.espnqa.com/?src=com&_adblock=true&espn=cloud");
     }
 
-    @BeforeGroups(groups = {"logOut"})
+    @BeforeMethod(groups = {"logOut", "cancelAccount"})
     public void login(String username, String password) {
         homePageStart.getPageHeader();
         homePageStart.isLeftLoginMenuVisible();
@@ -96,7 +96,7 @@ public class BaseTest {
     }
 
 
-    @AfterGroups(groups = {"logIn"})
+    @AfterMethod(groups = {"logIn"})
     public void logOut() {
         homePageLoggedIn.getPageHeader();
         homePageLoggedIn.isLeftLoginMenuVisible();
@@ -107,7 +107,7 @@ public class BaseTest {
         homePageStart1.getPageHeader();
     }
 
-//    @AfterTest
+    @AfterTest(groups = {"logIn", "logOut", "cancelAccount"})
     public void quit() {
         driver.quit();
     }

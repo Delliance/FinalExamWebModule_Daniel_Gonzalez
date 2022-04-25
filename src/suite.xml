@@ -10,18 +10,33 @@
     <parameter name="singUpEmail" value="thisisarandomemail12345V43@randomemail.com"/>
     <parameter name="singUpPassword" value="ThisIsMyDifficultPassword12345!"/>
     <test name="Log in" >
+        <groups>
+            <run>
+                <include name="logIn" />
+            </run>
+        </groups>
         <classes>
             <class name="tests.LogInTest.LogInTest" />
         </classes>
     </test>
 
     <test name="Log out">
+        <groups>
+            <run>
+                <include name="logOut" />
+            </run>
+        </groups>
         <classes>
             <class name="tests.LogOutTest.LogOutTest"/>
         </classes>
     </test>
 
     <test name="Cancel account">
+        <groups>
+            <run>
+                <include name="cancelAccount" />
+            </run>
+        </groups>
         <classes>
             <class name="tests.CancelAccountTest.CancelAccountTest"/>
         </classes>

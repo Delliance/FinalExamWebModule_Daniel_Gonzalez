@@ -28,7 +28,7 @@ public class HomePageStart {
     public HomePageStart(WebDriver driver) {
         this.driver =  driver;
         actions = new Actions(driver);
-        wait = new WebDriverWait(driver, 5);
+        wait = new WebDriverWait(driver, 10);
     }
 
     public String getPageHeader() {

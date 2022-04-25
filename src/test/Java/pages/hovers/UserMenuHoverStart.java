@@ -23,7 +23,7 @@ public class UserMenuHoverStart {
     public UserMenuHoverStart(WebElement menu, WebDriver driver) {
         this.menu = menu;
         this.driver = driver;
-        wait = new WebDriverWait(driver, 5);
+        wait = new WebDriverWait(driver, 10);
     }
 
     public boolean isMenuDisplayed() {

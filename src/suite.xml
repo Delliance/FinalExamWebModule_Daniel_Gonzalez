@@ -8,7 +8,7 @@
     <parameter name="singUpLastName" value="randomLastName"/>
 <!--    Be sure to change the email each time you're going to run this test, since it doesn't allow to use the same email for 14 days, change the V# with other number in sequence-->
 <!--    The most recent one is 46-->
-    <parameter name="singUpEmail" value="thisisarandomemail12345V50@randomemail.com"/>
+    <parameter name="singUpEmail" value="thisisarandomemail12345V51@randomemail.com"/>
     <parameter name="singUpPassword" value="ThisIsMyDifficultPassword12345!"/>
     <test name="Log in" >
         <groups>

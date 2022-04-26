@@ -7,29 +7,30 @@
     <parameter name="singUpFirstName" value="randomName"/>
     <parameter name="singUpLastName" value="randomLastName"/>
 <!--    Be sure to change the email each time you're going to run this test, since it doesn't allow to use the same email for 14 days, change the V# with other number in sequence-->
-    <parameter name="singUpEmail" value="thisisarandomemail12345V44@randomemail.com"/>
+<!--    The most recent one is 44-->
+    <parameter name="singUpEmail" value="thisisarandomemail12345V39@randomemail.com"/>
     <parameter name="singUpPassword" value="ThisIsMyDifficultPassword12345!"/>
-    <test name="Log in" >
-        <groups>
-            <run>
-                <include name="logIn" />
-            </run>
-        </groups>
-        <classes>
-            <class name="tests.LogInTest.LogInTest" />
-        </classes>
-    </test>
+<!--    <test name="Log in" >-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="logIn" />-->
+<!--            </run>-->
+<!--        </groups>-->
+<!--        <classes>-->
+<!--            <class name="tests.LogInTest.LogInTest" />-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Log out">
-        <groups>
-            <run>
-                <include name="logOut" />
-            </run>
-        </groups>
-        <classes>
-            <class name="tests.LogOutTest.LogOutTest"/>
-        </classes>
-    </test>
+<!--    <test name="Log out">-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="logOut" />-->
+<!--            </run>-->
+<!--        </groups>-->
+<!--        <classes>-->
+<!--            <class name="tests.LogOutTest.LogOutTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
     <test name="Cancel account">
         <groups>

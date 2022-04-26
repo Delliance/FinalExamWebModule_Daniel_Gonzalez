@@ -40,7 +40,7 @@ public class LoginSingUpIFrame {
 
     public LoginSingUpIFrame(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 5);
     }
 
     public void setUsername (String username) {

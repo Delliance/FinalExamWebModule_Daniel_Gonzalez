@@ -1,8 +1,6 @@
 package tests.LogInTest;
 
 import pages.HomePageLoggedIn;
-import pages.HomePageStart;
-import pages.hovers.UserMenuHoverLoggedIn;
 import tests.baseTest.BaseTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -27,6 +25,6 @@ public class LogInTest extends BaseTest {
         singUpIFrame.setPassword(password);
         HomePageLoggedIn homePageLoggedIn1 = singUpIFrame.clickLogin();
         assertEquals(homePageLoggedIn1.getPageHeader(), "ESPN", "Web page Title does not match");
-//        assertFalse(homePageLoggedIn1.isLeftLoginMenuVisible(), "The login menu is visible, you're not logged in");
+        assertFalse(homePageLoggedIn1.isLeftLoginMenuVisible(), "The login menu is visible, you're not logged in");
     }
 }

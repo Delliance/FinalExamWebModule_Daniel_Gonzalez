@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -23,7 +24,7 @@ public class HomePageStart {
 
     private By header = By.cssSelector(".container h1 a"); //check if it is ESPN
 
-    private By loginMenuHeader = By.id("sideLogin-left-rail"); //check if it is visible
+    private By leftLoginMenu = By.id("sideLogin-left-rail"); //check if it is visible
 
     public HomePageStart(WebDriver driver) {
         this.driver =  driver;
@@ -41,8 +42,13 @@ public class HomePageStart {
     }
 
     public boolean isLeftLoginMenuVisible() {
-        wait.until(ExpectedConditions.presenceOfElementLocated(loginMenuHeader));
-        return driver.findElement(loginMenuHeader).isDisplayed();
+        wait.until((ExpectedConditions.presenceOfElementLocated(leftLoginMenu)));
+        try {
+            wait.until(ExpectedConditions.attributeToBe(leftLoginMenu, "style", "display: block;"));
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
     public UserMenuHoverStart hoverUserMenu() {

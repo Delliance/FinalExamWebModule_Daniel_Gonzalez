@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -23,20 +24,19 @@ public class HomePageLoggedIn {
 
     private By header = By.cssSelector(".container h1 a"); //check if it is ESPN
 
-    private By loginMenuHeader = By.id("sideLogin-left-rail"); //check if it is not visible, logged in this menu is there but not visible
+    private By leftLoginMenu = By.id("sideLogin-left-rail"); //check if it is not visible, logged in this menu is there but not visible
 
     private By loginIframe = By.cssSelector("#disneyid-wrapper");
 
     public HomePageLoggedIn(WebDriver driver) {
         this.driver =  driver;
         actions = new Actions(driver);
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 5);
     }
 
     public String getPageHeader() {
 
-//        wait.until(ExpectedConditions.attributeToBe(loginIframe, "style", "display: none;"));
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(loginIframe));
+        wait.until(ExpectedConditions.attributeToBe(leftLoginMenu, "style", "display: none;"));
         wait.until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return  d.findElement(header).getText().length() != 0; //if it takes too long to charge the page, this text does not load, so I use this condition
@@ -46,9 +46,15 @@ public class HomePageLoggedIn {
     }
 
     public boolean isLeftLoginMenuVisible() {
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(loginIframe));
-        wait.until(ExpectedConditions.presenceOfElementLocated(loginMenuHeader));
-        return driver.findElement(loginMenuHeader).isDisplayed();
+//        wait.until(ExpectedConditions.invisibilityOfElementLocated(loginIframe));
+        wait.until((ExpectedConditions.presenceOfElementLocated(leftLoginMenu)));
+        try {
+            wait.until(ExpectedConditions.attributeToBe(leftLoginMenu, "style", "display: none;"));
+            return false;
+        }
+        catch (TimeoutException e){
+            return true;
+        }
     }
 
     public UserMenuHoverLoggedIn hoverUserMenu() {

@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.HomePageStart;
 import pages.iframes.LoginSingUpIFrame;
+import pages.iframes.MyAccountIFrame;
 
 public class UserMenuHoverLoggedIn {
     private WebElement menu;
@@ -26,7 +27,7 @@ public class UserMenuHoverLoggedIn {
     public UserMenuHoverLoggedIn(WebElement menu, WebDriver driver) {
         this.menu = menu;
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 5);
     }
 
     public boolean isMenuDisplayed() {
@@ -41,6 +42,13 @@ public class UserMenuHoverLoggedIn {
         wait.until(ExpectedConditions.visibilityOf(menu));
         menu.findElement(logOutLink).click();
         return new HomePageStart(driver);
+    }
+
+    public MyAccountIFrame clickMyAccountLink() {
+        wait.until(ExpectedConditions.visibilityOf(menu));
+        menu.findElement(myProfileLink).click();
+        switchToMyProfileIFrame();
+        return new MyAccountIFrame(driver);
     }
 
     private void switchToMyProfileIFrame() {

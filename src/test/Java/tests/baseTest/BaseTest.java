@@ -20,7 +20,7 @@ public class BaseTest {
 
     protected HomePageLoggedIn homePageLoggedIn;
 
-    @BeforeSuite(groups = {"logIn", "logOut", "cancelAccount"})
+//    @BeforeSuite(groups = {"logIn", "logOut", "cancelAccount"})
     @Parameters({"singUpFirstName", "singUpLastName", "singUpEmail", "singUpPassword"})
     public void createAccount(String firstName, String lastName, String email, String password){
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
@@ -43,7 +43,7 @@ public class BaseTest {
     }
 
     @BeforeTest(groups = {"logIn", "logOut", "cancelAccount"})
-    @Parameters({"browserF"}) //browserC = chrome, browserF = firefox, browserE = edge
+    @Parameters({"browserC"}) //browserC = chrome, browserF = firefox, browserE = edge
     public void setUp(String browser) {
         switch (browser){
             case "chrome":
@@ -79,7 +79,21 @@ public class BaseTest {
     }
 
     @BeforeMethod(groups = {"logOut", "cancelAccount"})
+    @Parameters({"singUpEmail", "singUpPassword"})
     public void login(String username, String password) {
+//        homePageStart.getPageHeader();
+//        homePageStart.isLeftLoginMenuVisible();
+//        UserMenuHoverStart menuHover = homePageStart.hoverUserMenu();
+//        menuHover.isMenuDisplayed();
+//        menuHover.getHeader();
+//        LoginSingUpIFrame singUpIFrame = menuHover.clickLoginLink();
+//        singUpIFrame.isTheIFrameActive();
+//        singUpIFrame.isIFrameLogoVisible();
+//        singUpIFrame.setUsername(username);
+//        singUpIFrame.setPassword(password);
+//        HomePageLoggedIn homePageLoggedIn1 = singUpIFrame.clickLogin();
+//        homePageLoggedIn1.getPageHeader();
+
         homePageStart.getPageHeader();
         homePageStart.isLeftLoginMenuVisible();
         UserMenuHoverStart menuHover = homePageStart.hoverUserMenu();
@@ -92,8 +106,9 @@ public class BaseTest {
         singUpIFrame.setPassword(password);
         HomePageLoggedIn homePageLoggedIn1 = singUpIFrame.clickLogin();
         homePageLoggedIn1.getPageHeader();
-//        assertFalse(homePageLoggedIn1.isLeftLoginMenuVisible(), "The login menu is visible, you're not logged in");
+        homePageLoggedIn1.isLeftLoginMenuVisible();
     }
+
 
 
     @AfterMethod(groups = {"logIn"})
@@ -107,7 +122,7 @@ public class BaseTest {
         homePageStart1.getPageHeader();
     }
 
-    @AfterTest(groups = {"logIn", "logOut", "cancelAccount"})
+//    @AfterTest(groups = {"logIn", "logOut", "cancelAccount"})
     public void quit() {
         driver.quit();
     }

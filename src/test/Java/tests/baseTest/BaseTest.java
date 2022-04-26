@@ -18,8 +18,8 @@ public class BaseTest {
 
     protected HomePageLoggedIn homePageLoggedIn;
 
-//    @BeforeSuite(groups = {"logIn", "logOut", "cancelAccount"})
-//    @Parameters({"singUpFirstName", "singUpLastName", "singUpEmail", "singUpPassword"})
+    @BeforeSuite(groups = {"logIn", "logOut", "cancelAccount"})
+    @Parameters({"singUpFirstName", "singUpLastName", "singUpEmail", "singUpPassword"})
     public void createAccount(String firstName, String lastName, String email, String password){
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
         driver = new FirefoxDriver();
@@ -106,7 +106,7 @@ public class BaseTest {
         homePageStart1.getPageHeader();
     }
 
-//    @AfterTest(groups = {"logIn", "logOut", "cancelAccount"})
+    @AfterTest(groups = {"logIn", "logOut", "cancelAccount"})
     public void quit() {
         driver.quit();
     }

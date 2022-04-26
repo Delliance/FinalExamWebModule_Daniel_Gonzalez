@@ -18,6 +18,8 @@ public class CancelAccountTest extends BaseTest {
         assertTrue(menuHoverLoggedIn.isMenuDisplayed(), "Menu is not displayed");
         assertEquals(menuHoverLoggedIn.getHeader(), "WelcomerandomName!", "Menu Header Incorrect"); //this assertt different from the login has the name of the user
         MyAccountIFrame myAccountIFrame = menuHoverLoggedIn.clickMyAccountLink();
-        myAccountIFrame.ClickCancelAccount();
+        assertTrue(myAccountIFrame.isTheIFrameActive());
+        myAccountIFrame.clickCancelAccount();
+//        myAccountIFrame.clickConfirmCancelAccount();
     }
 }

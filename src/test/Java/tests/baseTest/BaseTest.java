@@ -11,8 +11,6 @@ import pages.hovers.UserMenuHoverLoggedIn;
 import pages.hovers.UserMenuHoverStart;
 import pages.iframes.LoginSingUpIFrame;
 
-import static org.testng.Assert.*;
-
 public class BaseTest {
 
     private WebDriver driver;
@@ -21,7 +19,7 @@ public class BaseTest {
     protected HomePageLoggedIn homePageLoggedIn;
 
 //    @BeforeSuite(groups = {"logIn", "logOut", "cancelAccount"})
-    @Parameters({"singUpFirstName", "singUpLastName", "singUpEmail", "singUpPassword"})
+//    @Parameters({"singUpFirstName", "singUpLastName", "singUpEmail", "singUpPassword"})
     public void createAccount(String firstName, String lastName, String email, String password){
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
         driver = new FirefoxDriver();
@@ -39,7 +37,6 @@ public class BaseTest {
         HomePageLoggedIn homePageLoggedIn1 = singUpIFrame.clickConfirmSingUpButton();
         homePageLoggedIn1.getPageHeader();
         driver.quit();
-
     }
 
     @BeforeTest(groups = {"logIn", "logOut", "cancelAccount"})
@@ -81,19 +78,6 @@ public class BaseTest {
     @BeforeMethod(groups = {"logOut", "cancelAccount"})
     @Parameters({"singUpEmail", "singUpPassword"})
     public void login(String username, String password) {
-//        homePageStart.getPageHeader();
-//        homePageStart.isLeftLoginMenuVisible();
-//        UserMenuHoverStart menuHover = homePageStart.hoverUserMenu();
-//        menuHover.isMenuDisplayed();
-//        menuHover.getHeader();
-//        LoginSingUpIFrame singUpIFrame = menuHover.clickLoginLink();
-//        singUpIFrame.isTheIFrameActive();
-//        singUpIFrame.isIFrameLogoVisible();
-//        singUpIFrame.setUsername(username);
-//        singUpIFrame.setPassword(password);
-//        HomePageLoggedIn homePageLoggedIn1 = singUpIFrame.clickLogin();
-//        homePageLoggedIn1.getPageHeader();
-
         homePageStart.getPageHeader();
         homePageStart.isLeftLoginMenuVisible();
         UserMenuHoverStart menuHover = homePageStart.hoverUserMenu();

@@ -46,7 +46,6 @@ public class HomePageLoggedIn {
     }
 
     public boolean isLeftLoginMenuVisible() {
-//        wait.until(ExpectedConditions.invisibilityOfElementLocated(loginIframe));
         wait.until((ExpectedConditions.presenceOfElementLocated(leftLoginMenu)));
         try {
             wait.until(ExpectedConditions.attributeToBe(leftLoginMenu, "style", "display: none;"));

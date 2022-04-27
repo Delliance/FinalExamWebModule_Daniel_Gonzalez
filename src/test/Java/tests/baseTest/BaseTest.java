@@ -80,7 +80,6 @@ public class BaseTest {
     }
 
     @BeforeMethod(groups = {"logIn", "logOut", "cancelAccount"})
-//    @Parameters({"webPage"})
     public void goHome() {
         driver.get("https://www.espnqa.com/?src=com&_adblock=true&espn=cloud");
     }

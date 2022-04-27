@@ -15,7 +15,6 @@ public class LogInTest extends BaseTest {
     public Logger logger = Logger.getLogger(LogInTest.class);
 
     @Test(groups = {"logIn"}, dataProvider = "loginData", dataProviderClass = UserDataProvider.class)
-//    @Parameters({"singUpEmail", "singUpPassword"})
     public void testLogin(String username, String password) {
         assertEquals(homePageStart.getPageHeader(), "ESPN", "Web page Title does not match");
         assertTrue(homePageStart.isLeftLoginMenuVisible(), "Left login menu is not visible, check you're logged out");

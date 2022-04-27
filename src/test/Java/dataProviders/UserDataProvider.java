@@ -9,8 +9,6 @@ import java.util.Random;
 
 public class UserDataProvider {
 
-    private static String firstName;
-
     private static String lastName;
 
     private static String email;
@@ -18,13 +16,6 @@ public class UserDataProvider {
     private static String password;
 
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-//    public UserDataProvider() {
-//        this.firstName = "randomName"; //this one is fixed because I used it to check the login
-//        this.lastName = randomLastNameGenerator();
-//        this.email = randomEmailGenerator();
-//        this.password = randomPasswordGenerator();
-//    }
 
     private String randomLastNameGenerator() {
         if (lastName == null) {
@@ -62,7 +53,7 @@ public class UserDataProvider {
 
     public String getFirstName() {
         return "randomName";
-    }
+    } //fixed first name for an assent in the login
 
     public String getLastName() {
         return randomLastNameGenerator();
@@ -75,11 +66,6 @@ public class UserDataProvider {
     public String getPassword() {
         return randomPasswordGenerator();
     }
-
-//    @DataProvider(name = "registrationData")
-//    public Object[][] registrationData() {
-//        return new Object[][] {{this.firstName, this.lastName, this.email, this.password}};
-//    }
 
     @DataProvider(name = "loginData")
     public Object[][] loginData() {

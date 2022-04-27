@@ -86,7 +86,6 @@ public class LoginSingUpIFrame {
     }
 
     public HomePageLoggedIn clickConfirmSingUpButton() {
-//        NOTE: for some reason this method sometimes work and other times not, I don't know the reason
         wait.until(ExpectedConditions.presenceOfElementLocated(confirmSingUpButton));
         driver.findElement(confirmSingUpButton).click();
         switchToMainArea();

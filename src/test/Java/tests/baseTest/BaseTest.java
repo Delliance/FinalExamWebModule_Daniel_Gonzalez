@@ -1,10 +1,12 @@
 package tests.baseTest;
 
 import dataProviders.UserDataProvider;
+import listeners.EventReporter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.*;
 import pages.HomePageLoggedIn;
 import pages.HomePageStart;
@@ -14,7 +16,7 @@ import pages.iframes.LoginSingUpIFrame;
 
 public class BaseTest {
 
-    private WebDriver driver;
+    private EventFiringWebDriver driver;
     protected HomePageStart homePageStart;
 
     protected HomePageLoggedIn homePageLoggedIn;
@@ -32,7 +34,8 @@ public class BaseTest {
         String email = userDataProvider.getEmail();
         String password = userDataProvider.getPassword();
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
-        driver = new FirefoxDriver();
+        driver = new EventFiringWebDriver(new FirefoxDriver());
+        driver.register(new EventReporter());
         goHome();
         homePageStart = new HomePageStart(driver);
         driver.manage().window().maximize();
@@ -55,23 +58,24 @@ public class BaseTest {
         switch (browser){
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-                driver = new ChromeDriver();
+                driver = new EventFiringWebDriver(new ChromeDriver());
                 break;
 
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
-                driver = new FirefoxDriver();
+                driver = new EventFiringWebDriver(new FirefoxDriver());
                 break;
 
             case "edge":
                 System.setProperty("webdriver.edge.driver", "src/main/resources/msedgedriver.exe");
-                driver = new EdgeDriver();
+                driver = new EventFiringWebDriver(new EdgeDriver());
                 break;
 
             default:
                 throw new IllegalStateException("That driver does not exist, check if it it was written correctly or install it");
         }
 
+        driver.register(new EventReporter());
         goHome();
         System.out.println(driver.getTitle());
         homePageStart = new HomePageStart(driver);

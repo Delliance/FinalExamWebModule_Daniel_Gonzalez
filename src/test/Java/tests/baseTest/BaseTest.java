@@ -53,7 +53,7 @@ public class BaseTest {
     }
 
     @BeforeTest(groups = {"logIn", "logOut", "cancelAccount"})
-    @Parameters({"browserC"}) //browserC = chrome, browserF = firefox, browserE = edge
+    @Parameters({"browserF"}) //browserC = chrome, browserF = firefox, browserE = edge
     public void setUp(String browser) {
         switch (browser){
             case "chrome":

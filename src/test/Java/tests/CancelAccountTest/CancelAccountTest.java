@@ -29,7 +29,6 @@ public class CancelAccountTest extends BaseTest {
         myAccountIFrame.clickCancelAccount();
         myAccountIFrame.clickConfirmCancelAccount();
         HomePageStart homePageStart1 = myAccountIFrame.clickLastConfirm();
-        assertEquals(homePageStart1.getPageHeader(), "ESPN", "Web page Title does not match");
-        logger.info("The account was correctly deleted and you're back to the main page");
+        logger.info("The account was correctly deleted");
     }
 }

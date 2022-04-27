@@ -37,10 +37,8 @@ public class HomePageLoggedIn {
     public String getPageHeader() {
 
         wait.until(ExpectedConditions.attributeToBe(leftLoginMenu, "style", "display: none;"));
-        wait.until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver d) {
-                return  d.findElement(header).getText().length() != 0; //if it takes too long to charge the page, this text does not load, so I use this condition
-            }
+        wait.until((ExpectedCondition<Boolean>) d -> {
+            return  d.findElement(header).getText().length() != 0; //if it takes too long to charge the page, this text does not load, so I use this condition
         });
         return driver.findElement(header).getText();
     }

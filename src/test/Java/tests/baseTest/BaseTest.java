@@ -1,5 +1,6 @@
 package tests.baseTest;
 
+import dataProviders.UserDataProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -18,9 +19,18 @@ public class BaseTest {
 
     protected HomePageLoggedIn homePageLoggedIn;
 
+    private UserDataProvider userDataProvider;
+
+    public BaseTest() {
+        this.userDataProvider = new UserDataProvider();
+    }
+
     @BeforeSuite(groups = {"logIn", "logOut", "cancelAccount"})
-    @Parameters({"singUpFirstName", "singUpLastName", "singUpEmail", "singUpPassword"})
-    public void createAccount(String firstName, String lastName, String email, String password){
+    public void createAccount(){
+        String firstName = userDataProvider.getFirstName();
+        String lastName = userDataProvider.getLastName();
+        String email = userDataProvider.getEmail();
+        String password = userDataProvider.getPassword();
         System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
         driver = new FirefoxDriver();
         goHome();
@@ -76,8 +86,9 @@ public class BaseTest {
     }
 
     @BeforeMethod(groups = {"logOut", "cancelAccount"})
-    @Parameters({"singUpEmail", "singUpPassword"})
-    public void login(String username, String password) {
+    public void login() {
+        String username = userDataProvider.getEmail();
+        String password = userDataProvider.getPassword();
         homePageStart.getPageHeader();
         homePageStart.isLeftLoginMenuVisible();
         UserMenuHoverStart menuHover = homePageStart.hoverUserMenu();

@@ -19,6 +19,8 @@ public class MyAccountIFrame {
 
     private By lastConfirmButton = By.cssSelector("button.btn.btn-primary.ng-isolate-scope");
 
+    private By loadingIndicator = By.cssSelector("div[class=\"loading-indicator state-loading\"]");
+
     private By iFrameId = By.id("disneyid-iframe");
 
     public MyAccountIFrame(WebDriver driver) {
@@ -42,6 +44,7 @@ public class MyAccountIFrame {
     }
 
     public void clickCancelAccount() {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(loadingIndicator));
         wait.until(ExpectedConditions.elementToBeClickable(cancelAccountLink));
         try{
             driver.findElement(cancelAccountLink).click();
@@ -58,6 +61,7 @@ public class MyAccountIFrame {
     }
 
     public HomePageStart clickLastConfirm() {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(loadingIndicator));
         wait.until(ExpectedConditions.elementToBeClickable(lastConfirmButton));
         try {
             driver.findElement(lastConfirmButton).click();

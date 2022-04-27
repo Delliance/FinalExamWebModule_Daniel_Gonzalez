@@ -9,3 +9,5 @@ browserC = Chrome
 browserF = Firefox
 
 browserE = Edge
+
+Random user generator is enabled and is not necessary to change it manually (created using data provider)

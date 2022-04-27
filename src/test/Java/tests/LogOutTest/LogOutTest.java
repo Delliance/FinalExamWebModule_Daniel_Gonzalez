@@ -24,6 +24,6 @@ public class LogOutTest extends BaseTest{
         HomePageStart homePageStart1 = menuHoverLoggedIn.clickLogOutLink();
         assertEquals(homePageStart1.getPageHeader(), "ESPN", "Web page Title does not match");
         assertTrue(homePageStart1.isLeftLoginMenuVisible(), "Left login menu is not visible, check you're logged out");
-        logger.info("You correctly logged out and are now in the home page");
+        logger.info("You were correctly logged out");
     }
 }
